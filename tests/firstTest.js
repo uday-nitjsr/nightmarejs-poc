@@ -27,7 +27,7 @@ describe("This is first test for conduit using nightmare", function(){
       .catch(done)
 	});
 
-	it("verify other",function(done){
+	it("verify input email",function(done){
 		nightmare
 		.goto('http://localhost:4100/login')
 		.evaluate(() => document.querySelector("input[type=email]").placeholder)
@@ -37,5 +37,16 @@ describe("This is first test for conduit using nightmare", function(){
       		done()
       	})
       	.catch(done)
+	});
+
+	it("verify both conduit icon and email textbox", function(done){
+		nightmare
+		.goto('http://localhost:4100/login')
+		.evaluate(function(){
+			return document.querySelector("a.navbar-brand").text;
+		})
+		.then(function(conduitIcon){
+			return expect(conduit).to.equal("conduit")
+		})
 	});
 });
