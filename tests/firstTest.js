@@ -11,7 +11,8 @@ describe("This is first test for conduit using nightmare", function(){
 				show: true,
 				width: 1280,
 				height: 1024
-			})
+			}
+			)
 		done()
 	});
 	it("verify conduit icon",function(done){
@@ -46,7 +47,9 @@ describe("This is first test for conduit using nightmare", function(){
 			return document.querySelector("a.navbar-brand").text;
 		})
 		.then(function(conduitIcon){
-			return expect(conduit).to.equal("conduit")
+			expect(conduitIcon).to.equal("conduit")
+			done()
 		})
+		.catch(done)
 	});
 });
