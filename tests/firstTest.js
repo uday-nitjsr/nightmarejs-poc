@@ -48,8 +48,21 @@ describe("This is first test for conduit using nightmare", function(){
 		})
 		.then(function(conduitIcon){
 			expect(conduitIcon).to.equal("conduit")
-			done()
+
+			nightmare.goto("https://www.google.com/")
+			.evaluate(function(){
+				return document.querySelector("a.navbar-brand").text;
+			})
+			.end()
+			.then(function(texttt){
+				expect(texttt).to.eq("something")
+				done()
+			})
+			.catch(done)
+
 		})
-		.catch(done)
+		.catch(function(err){
+			done(new Error(err))
+		})
 	});
 });
